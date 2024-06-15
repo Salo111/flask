@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flags Quiz</title>
+    <style>
+        body {
+            background-image: url('{{ url_for('static', filename='images/background.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* Text color */
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+        .container {
+            text-align: center;
+            padding-top: 100px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .welcome-text {
+            color: #000; /* Black text color */
+            font-size: 2em; /* Adjust the size as needed */
+        }
+        .colorful-text {
+            /* Apply colorful text gradient */
+            background: linear-gradient(to right, #FF0000, #FF4D00, #FF9900, #FFFF00, #00FF00, #00FFFF, #0000FF, #4B0082, #8B00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .start-button {
+            padding: 10px 20px;
+            font-size: 1.5em;
+            background-color: #008CBA; /* Button color */
+            color: #fff; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .start-button:hover {
+            background-color: #005f6b; /* Hover color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            <span class="welcome-text">Welcome to the</span>
+            <br>
+            <span class="colorful-text">Flags Quiz!</span>
+        </h1>
+        <p>Test your knowledge of world flags.</p>
+        <button class="start-button" onclick="window.location.href='/quiz'">Start Quiz</button>
+    </div>
+</body>
+</html>

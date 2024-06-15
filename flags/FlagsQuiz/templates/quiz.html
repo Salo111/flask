@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flags Quiz</title>
+    <style>
+        body {
+            background-color: #f0f0f0; /* Light gray background */
+            font-family: Arial, sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+        .container {
+            text-align: center;
+            padding-top: 50px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .flag-image {
+            max-width: 400px; /* Adjust the maximum width as needed */
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .answer-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .answer-button {
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #008CBA; /* Default button color */
+            color: #fff; /* Button text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .answer-button.correct {
+            background-color: #00FF00; /* Green color for correct answer */
+        }
+        .answer-button.wrong {
+            background-color: #FF0000; /* Red color for wrong answer */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Which country does this flag belong to?</h1>
+        <img src="{{ url_for('static', filename='flags/' + flag) }}" alt="Flag" class="flag-image">
+        <div class="answer-buttons">
+            <button class="answer-button" onclick="checkAnswer(this, 'Canada')">Canada</button>
+            <button class="answer-button" onclick="checkAnswer(this, 'Georgia')">Georgia</button>
+            <button class="answer-button" onclick="checkAnswer(this, '{{ flag.split('.')[0].replace('_', ' ').capitalize() }}')">{{ flag.split('.')[0].replace('_', ' ').capitalize() }}</button>
+            <button class="answer-button" onclick="checkAnswer(this, 'Spain')">Spain</button>
+        </div>
+    </div>
+
+    <script>
+        var correctAnswer = "{{ flag.split('.')[0].replace('_', ' ').capitalize() }}";
+
+        String.prototype.capitalize = function() {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        };
+
+        function checkAnswer(button, answer) {
+            if (answer === correctAnswer) {
+                button.classList.add('correct');
+                setTimeout(function() {
+                    window.location.href = '/quiz'; // Go to the next question after 1 second
+                }, 1000);
+            } else {
+                button.classList.add('wrong');
+                button.disabled = true; // Disable the clicked button
+            }
+        }
+    </script>
+</body>
+</html>
